@@ -1,0 +1,272 @@
+SQL> host cls
+
+SQL> help index;
+
+Enter Help [topic] for help.
+
+ @             COPY         PAUSE                    SHUTDOWN
+ @@            DEFINE       PRINT                    SPOOL
+ /             DEL          PROMPT                   SQLPLUS
+ ACCEPT        DESCRIBE     QUIT                     START
+ APPEND        DISCONNECT   RECOVER                  STARTUP
+ ARCHIVE LOG   EDIT         REMARK                   STORE
+ ATTRIBUTE     EXECUTE      REPFOOTER                TIMING
+ BREAK         EXIT         REPHEADER                TTITLE
+ BTITLE        GET          RESERVED WORDS (SQL)     UNDEFINE
+ CHANGE        HELP         RESERVED WORDS (PL/SQL)  VARIABLE
+ CLEAR         HOST         RUN                      WHENEVER OSERROR
+ COLUMN        INPUT        SAVE                     WHENEVER SQLERROR
+ COMPUTE       LIST         SET                      XQUERY
+ CONNECT       PASSWORD     SHOW
+
+
+SQL> select sysdate from dual;
+
+SYSDATE                                                                         
+--------------                                                                  
+16-3月 -18                                                                      
+
+SQL> desc v$logfile;
+ 名称                                      是否为空? 类型
+ ----------------------------------------- -------- ----------------------------
+ GROUP#                                             NUMBER
+ STATUS                                             VARCHAR2(7)
+ TYPE                                               VARCHAR2(7)
+ MEMBER                                             VARCHAR2(513)
+ IS_RECOVERY_DEST_FILE                              VARCHAR2(3)
+
+SQL> disc;
+从 Oracle Database 11g Release 11.2.0.1.0 - Production 断开
+SQL> conn sys/123456 as sysdba
+已连接。
+SQL> select sysdate from dual;
+
+SYSDATE                                                                         
+--------------                                                                  
+16-3月 -18                                                                      
+
+SQL> show sga;
+
+Total System Global Area  778387456 bytes                                       
+Fixed Size                  1374808 bytes                                       
+Variable Size             243271080 bytes                                       
+Database Buffers          528482304 bytes                                       
+Redo Buffers                5259264 bytes                                       
+SQL> show user;
+USER 为 "SYS"
+SQL> select * from dept;
+select * from dept
+              *
+第 1 行出现错误: 
+ORA-00942: 表或视图不存在 
+
+
+SQL> create table dept(
+  2  	did integer primary key,
+  3  	dname varchar2(20),
+  4  	tel varchar2(15),
+  5  	ress varchar2(20)
+  6  );
+
+表已创建。
+
+SQL> insert into dept values(1,'董事会','1111111','沈阳');
+
+已创建 1 行。
+
+SQL> insert into dept values(2,'市场部','2222222','武汉');
+
+已创建 1 行。
+
+SQL> insert into dept values(3,'研发部','3333333','长春');
+
+已创建 1 行。
+
+SQL> insert into dept values(4,'财务部','4444444','南京');
+
+已创建 1 行。
+
+SQL> insert into dept values(5,'行政部','5555555','深圳');
+
+已创建 1 行。
+
+SQL> insert into dept values(6,'设计部','6666666','珠海');
+
+已创建 1 行。
+
+SQL> commit;
+
+提交完成。
+
+SQL> select * from dept;
+
+       DID DNAME                                                                
+---------- ----------------------------------------                             
+TEL                            RESS                                             
+------------------------------ ----------------------------------------         
+         1 董事会                                                               
+1111111                        沈阳                                             
+                                                                                
+         2 市场部                                                               
+2222222                        武汉                                             
+                                                                                
+         3 研发部                                                               
+3333333                        长春                                             
+                                                                                
+
+       DID DNAME                                                                
+---------- ----------------------------------------                             
+TEL                            RESS                                             
+------------------------------ ----------------------------------------         
+         4 财务部                                                               
+4444444                        南京                                             
+                                                                                
+         5 行政部                                                               
+5555555                        深圳                                             
+                                                                                
+         6 设计部                                                               
+6666666                        珠海                                             
+                                                                                
+
+已选择6行。
+
+SQL> title 'dept';
+SP2-0734: 未知的命令开头 "title 'dep..." - 忽略了剩余的行。
+SQL> select * from title 'dept';
+select * from title 'dept'
+                    *
+第 1 行出现错误: 
+ORA-00933: SQL 命令未正确结束 
+
+
+SQL> select * from dept;
+
+       DID DNAME                                                                
+---------- ----------------------------------------                             
+TEL                            RESS                                             
+------------------------------ ----------------------------------------         
+         1 董事会                                                               
+1111111                        沈阳                                             
+                                                                                
+         2 市场部                                                               
+2222222                        武汉                                             
+                                                                                
+         3 研发部                                                               
+3333333                        长春                                             
+                                                                                
+
+       DID DNAME                                                                
+---------- ----------------------------------------                             
+TEL                            RESS                                             
+------------------------------ ----------------------------------------         
+         4 财务部                                                               
+4444444                        南京                                             
+                                                                                
+         5 行政部                                                               
+5555555                        深圳                                             
+                                                                                
+         6 设计部                                                               
+6666666                        珠海                                             
+                                                                                
+
+已选择6行。
+
+SQL> ttitle center '部门列表';
+SQL> btitle right '制作人：盛亚伟';
+SQL> select * from dept;
+
+                                    部门列表                                    
+       DID DNAME                                                                
+---------- ----------------------------------------                             
+TEL                            RESS                                             
+------------------------------ ----------------------------------------         
+         1 董事会                                                               
+1111111                        沈阳                                             
+                                                                                
+         2 市场部                                                               
+2222222                        武汉                                             
+                                                                                
+         3 研发部                                                               
+                                                                  制作人：jer
+
+                                    部门列表                                    
+       DID DNAME                                                                
+---------- ----------------------------------------                             
+TEL                            RESS                                             
+------------------------------ ----------------------------------------         
+3333333                        长春                                             
+                                                                                
+         4 财务部                                                               
+4444444                        南京                                             
+                                                                                
+         5 行政部                                                               
+5555555                        深圳                                             
+                                                                  制作人：jer
+
+                                    部门列表                                    
+       DID DNAME                                                                
+---------- ----------------------------------------                             
+TEL                            RESS                                             
+------------------------------ ----------------------------------------         
+                                                                                
+         6 设计部                                                               
+6666666                        珠海                                             
+                                                                                
+
+
+
+                                                                  制作人：jer
+已选择6行。
+
+SQL> column tel heading '部门电话';
+SQL> column tel format $9999999;
+SQL> column ress null '地址不明';
+SQL> column dname jus center;
+SQL> column did noprint;
+SQL> select * from dept;
+
+                                    部门列表                                    
+                 DNAME                   部门电话                               
+---------------------------------------- ------------------------------         
+RESS                                                                            
+----------------------------------------                                        
+董事会                                   1111111                                
+沈阳                                                                            
+                                                                                
+市场部                                   2222222                                
+武汉                                                                            
+                                                                                
+研发部                                   3333333                                
+                                                                  制作人：jer
+
+                                    部门列表                                    
+                 DNAME                   部门电话                               
+---------------------------------------- ------------------------------         
+RESS                                                                            
+----------------------------------------                                        
+长春                                                                            
+                                                                                
+财务部                                   4444444                                
+南京                                                                            
+                                                                                
+行政部                                   5555555                                
+深圳                                                                            
+                                                                  制作人：jer
+
+                                    部门列表                                    
+                 DNAME                   部门电话                               
+---------------------------------------- ------------------------------         
+RESS                                                                            
+----------------------------------------                                        
+                                                                                
+设计部                                   6666666                                
+珠海                                                                            
+                                                                                
+
+
+
+                                                                  制作人：jer
+
+已选择6行。
+
+SQL> spool off;
