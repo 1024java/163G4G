@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"
+	"http://struts.apache.org/dtds/struts-2.1.dtd">
+	
+	<struts>
+	
+		<package name="demo" extends="struts-default">		
+			<action name="login" class="com.test.action.LoginAction">
+			    <result name="login">login.jsp</result>
+				<result name="index">index.jsp</result>		
+				<result name="jsgl">jsgl.jsp</result>
+				<result name="jsgl_sel">jsgl_upd.jsp</result>
+				<result name="tosel">jsgl_tosel.jsp</result> <!-- 按条件查询 -->
+				<result name="tolist" type="redirectAction">login!jscx</result>	<!-- 重定向查询 -->					
+			</action>
+		</package>
+		
+		<package name="tkdemo" extends="struts-default">	
+		 <action name="tklogin" class="com.test.action.tkLoginAction">	
+		  <result name="tkgl">tkgl.jsp</result>
+		  <result name="tk_sel">tkgl_tosel.jsp</result>
+		  <result name="tk_st">tkgl_st.jsp</result>
+		  <result name="tk_xgcx">tkgl_upd.jsp</result>
+		 </action>
+		</package>
+		
+		
+		<package name="sjdemo" extends="struts-default">
+		 <action name="sjlogin" class="com.test.action.PaperAction" >
+		  <result name="sjgl">paper.jsp</result>
+		 </action>
+		</package>
+	</struts>
